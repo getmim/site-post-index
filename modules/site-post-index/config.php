@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'site-post-index',
-    '__version' => '0.0.1',
+    '__version' => '0.0.2',
     '__git' => 'git@github.com:getmim/site-post-index.git',
     '__license' => 'MIT',
     '__author' => [
@@ -27,7 +27,7 @@ return [
                 'site' => NULL
             ],
             [
-                'site-setting' => NULL 
+                'site-setting' => NULL
             ]
         ],
         'optional' => []
@@ -53,6 +53,23 @@ return [
                 ],
                 'method' => 'GET',
                 'handler' => 'SitePostIndex\\Controller\\Post::index'
+            ]
+        ]
+    ],
+    'adminSetting' => [
+        'menus' => [
+            'site-post-index' => [
+                'label' => 'Post Index',
+                'icon' => '<i class="fas fa-newspaper"></i>',
+                'info' => 'Change post index preference',
+                'perm' => 'update_site_setting',
+                'index' => 0,
+                'options' => [
+                    'site-post-index' => [
+                        'label' => 'Change settings',
+                        'route' => ['adminSiteSettingSingle',['group' => 'Post Index']]
+                    ]
+                ]
             ]
         ]
     ]
