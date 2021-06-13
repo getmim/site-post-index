@@ -2,7 +2,7 @@
 /**
  * Meta
  * @package site-post-index
- * @version 0.0.1
+ * @version 0.0.3
  */
 
 namespace SitePostIndex\Library;
@@ -24,6 +24,12 @@ class Meta
         $meta = (object)[];
         foreach($std_metas as $name)
             $meta->$name = ($site_setting?\Mim::$app->setting->{'post_index_'.$name}:NULL) ?? $deff;
+
+        $page = \Mim::$app->req->getQuery('page', 1);
+        if($page > 1) {
+            $meta->title .= ' Page ' . $page;
+            $meta->description .= ' Page ' . $page;
+        }
 
         $result['head'] = [
             'description'       => $meta->description,
